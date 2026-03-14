@@ -4,6 +4,7 @@ import type {
   CreateSessionDto,
   ResizeDto,
   SessionDataDto,
+  ShellConfig,
 } from "../services/interfaces/terminal.interfaces.js";
 import type { ShellsService } from "../services/shells.service.js";
 import type { TerminalService } from "../services/terminal.service.js";
@@ -16,6 +17,33 @@ export function registerTerminalIpc(
 
   ipcMain.handle("terminal:shells", () => {
     return shellsService.getAvailableShells();
+  });
+
+  // -------------------------------------------------------------------------
+  // Profile CRUD
+  // -------------------------------------------------------------------------
+
+  ipcMain.handle(
+    "terminal:addProfile",
+    (_event, profile: Omit<ShellConfig, "id">) => {
+      return shellsService.addProfile(profile);
+    },
+  );
+
+  ipcMain.handle("terminal:updateProfile", (_event, profile: ShellConfig) => {
+    return shellsService.updateProfile(profile);
+  });
+
+  ipcMain.handle("terminal:removeProfile", (_event, id: string) => {
+    return shellsService.removeProfile(id);
+  });
+
+  ipcMain.handle("terminal:setDefault", (_event, id: string) => {
+    return shellsService.setDefaultProfile(id);
+  });
+
+  ipcMain.handle("terminal:rescan", async () => {
+    return shellsService.rescan();
   });
 
   ipcMain.handle(

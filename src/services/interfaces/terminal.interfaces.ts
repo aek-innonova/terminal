@@ -1,7 +1,14 @@
 export interface ShellConfig {
+  id: string;
   name: string;
   command: string;
   args?: string[];
+  icon?: string;
+  isDefault?: boolean;
+}
+
+export interface ProfilesFile {
+  profiles: ShellConfig[];
 }
 
 export interface CreateSessionDto {

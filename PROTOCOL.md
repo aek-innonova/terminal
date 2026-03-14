@@ -64,6 +64,7 @@ interface ShellConfig {
   name: string; // display name, e.g. "PowerShell", "Git Bash", "Zsh"
   command: string; // resolved path to shell binary
   args?: string[]; // launch arguments
+  icon?: string; // shell icon as a data URL (SVG or PNG)
 }
 ```
 

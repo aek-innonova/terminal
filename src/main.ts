@@ -16,7 +16,7 @@ const createWindow = (): void => {
     height: 600,
     titleBarStyle: "hidden",
     titleBarOverlay: {
-      color: "#404040",
+      color: "#333333",
       symbolColor: "#ffffff",
       height: 40,
     },
@@ -30,6 +30,7 @@ const createWindow = (): void => {
   win.loadURL("http://localhost:5173/");
 };
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  await shellsService.init();
   createWindow();
 });

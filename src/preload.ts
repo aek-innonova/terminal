@@ -44,6 +44,27 @@ const terminalAPI = {
     ipcRenderer.removeAllListeners("terminal:output");
     ipcRenderer.removeAllListeners("terminal:exit");
   },
+
+  // Profile CRUD
+  addProfile(profile: Omit<ShellConfig, "id">): Promise<ShellConfig> {
+    return ipcRenderer.invoke("terminal:addProfile", profile);
+  },
+
+  updateProfile(profile: ShellConfig): Promise<ShellConfig | null> {
+    return ipcRenderer.invoke("terminal:updateProfile", profile);
+  },
+
+  removeProfile(id: string): Promise<boolean> {
+    return ipcRenderer.invoke("terminal:removeProfile", id);
+  },
+
+  setDefault(id: string): Promise<boolean> {
+    return ipcRenderer.invoke("terminal:setDefault", id);
+  },
+
+  rescanShells(): Promise<ShellConfig[]> {
+    return ipcRenderer.invoke("terminal:rescan");
+  },
 };
 
 contextBridge.exposeInMainWorld("terminalAPI", terminalAPI);
