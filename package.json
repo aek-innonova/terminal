@@ -23,5 +23,8 @@
     "@types/node": "^25.5.0",
     "electron": "^41.0.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "node-pty": "^1.1.0"
   }
 }
