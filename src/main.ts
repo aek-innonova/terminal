@@ -12,7 +12,7 @@ registerTerminalIpc(shellsService, terminalService);
 
 const createWindow = (): void => {
   const win = new BrowserWindow({
-    width: 800,
+    width: 1280,
     height: 600,
     titleBarStyle: "hidden",
     titleBarOverlay: {
