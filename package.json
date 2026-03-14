@@ -1,0 +1,27 @@
+{
+  "name": "terminal",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && electron .",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aek-innonova/terminal.git"
+  },
+  "author": "",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/aek-innonova/terminal/issues"
+  },
+  "homepage": "https://github.com/aek-innonova/terminal#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "electron": "^41.0.2",
+    "typescript": "^5.9.3"
+  }
+}
