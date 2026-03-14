@@ -1,6 +1,14 @@
+import * as path from "path";
 import { app, BrowserWindow, Menu } from "electron";
+import { ShellsService } from "./services/shells.service.js";
+import { TerminalService } from "./services/terminal.service.js";
+import { registerTerminalIpc } from "./ipc/terminal.ipc.js";
 
 Menu.setApplicationMenu(null);
+
+const shellsService = new ShellsService();
+const terminalService = new TerminalService(shellsService);
+registerTerminalIpc(shellsService, terminalService);
 
 const createWindow = (): void => {
   const win = new BrowserWindow({
@@ -11,6 +19,11 @@ const createWindow = (): void => {
       color: "#404040",
       symbolColor: "#ffffff",
       height: 40,
+    },
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
+      nodeIntegration: false,
     },
   });
 
